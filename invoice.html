@@ -1,0 +1,254 @@
+<document pagesize='letter'>
+<html>
+  <head>
+    <style type="text/css">
+    @page {
+        size: letter portrait;
+        margin: 1cm;
+        
+      }
+      html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol, ul {
+        list-style: none;
+      }
+      blockquote, q {
+        quotes: none;
+      }
+      blockquote:before, blockquote:after, q:before, q:after {
+        content: '';
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        width: 910px;
+        margin: 0 auto;
+      }
+
+      table {
+        margin: 0 auto;
+        width: 900px;
+        background-color: #fff;
+      }
+
+      h1 {
+        font-size: 32px;
+        text-align: center;
+        margin: 30px 0;
+        color: #444444;
+      }
+
+      tr.head-row {
+        background-color: #aaa;
+      }
+
+      tr.head-row-simple, tr.head-row-simple td {
+        background-color: #fff;
+        border: 1px solid #a5d6ac !important;
+      }
+
+      tr.head-row td {
+        border: 1px solid #a5d6ac;
+        color: #fff;
+        font-weight: bold;
+      }
+
+      tr td {
+        border: 1px solid #000;
+        width: 415px;
+        padding: 15px;
+      }
+
+      tr td.bigger {
+        width: 385px;
+      }
+
+      tr td.smaller {
+        width: 30px;
+      }
+
+      tr td.bigger100 {
+        width: 880px;
+      }
+
+      h2 {
+        font-size: 26px;
+        float: left;
+        margin-right: 300px;
+        margin-top: 30px;
+        margin-bottom: 10px;
+      }
+
+      br.clear {
+        clear: both;
+      }
+
+      hr {
+        width: 900px;
+        background-color: #000;
+        height: 2px;
+      }
+
+      table.simple-table {
+        border: 0 none;
+      }
+
+      table.simple-table td, table.simple-table tr {
+        border: 0 none;
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <h1>Commercial Invoice</h1>
+  <table cellpadding="0" cellspacing="0" class="simple-table">
+      <tr>
+        <td width="300"><p>Tracking Number:</p></td>
+        <td width="150"><p>{{ header.tracking_number }}</p></td>
+        <td width="400"><p>Collection Date: {{ header.collection_date }}</p></td>
+      </tr>
+      <tr>
+        <td width="300"><p>Invoice No:</p></td>
+        <td width="150"><p>{{ header.invoice_number }}</p></td>
+        <td width="400"><p>Invoice Date: {{ header.invoice_date }}</p></td>
+      </tr>
+      <tr>
+        <td width="300"><p>Internal Reference No:</p></td>
+        <td width="150"><p>{{ header.internal_reference_number }}</p></td>
+        <td width="400"><p></p></td>
+      </tr>
+    </table>
+    &nbsp;
+  <table cellpadding="0" cellspacing="0">
+      <tr class="head-row">
+        <td>Recipient</td>
+        <td><p>Recipient Details</p></td>
+        <td>&nbsp;</td>
+        <td><p class="head-row"> Details</p></td>
+      </tr>
+      <tr style="border:hidden">
+        <td>Recipient</td>
+        <td><p><span class="simple-table">{{ recipient_details.name }}</span></p></td>
+        <td><span class="head-row">Sender</span></td>
+        <td><p><span class="simple-table">{{ sender_details.name }}</span></p></td>
+      </tr>
+      <tr style="border:hidden">
+        <td><span class="simple-table">Address</span></td>
+        <td><p><span class="simple-table">{{ recipient_details.address }}</span></p></td>
+        <td><span class="simple-table">Address</span></td>
+        <td><p><span class="simple-table">{{ sender_details.address }}</span></p></td>
+      </tr>
+      <tr style="border:hidden">
+        <td><span class="simple-table">Contact Number</span></td>
+        <td><p><span class="simple-table">{{ recipient_details.contact_number }}</span></p></td>
+        <td><span class="simple-table">Contact Number</span></td>
+        <td><p><span class="simple-table">{{ sender_details.contact_number }}</span></p></td>
+      </tr>
+      <tr style="border:hidden">
+        <td><span class="simple-table">VAT number</span></td>
+        <td><p><span class="simple-table">{{ recipient_details.vat_number }}</span></p></td>
+        <td><span class="simple-table">VAT number</span></td>
+        <td><p><span class="simple-table">{{ sender_details.vat_number }}</span></p></td>
+      </tr>
+    </table>
+    &nbsp;
+  <table cellpadding="0" cellspacing="0" style="margin-top: 20px;">
+      {% comment %}
+      <tr class="head-row-simple">
+        <td colspan="6"><p></p></td>
+      </tr>
+    {% endcomment %}
+    <tr class="head-row" style="border: 1px solid black;">
+      <td class="first"><p>Incoterm </p></td>
+      <td class="sec"><p>Currency</p></td>
+      <td class="fourth"><p>Total goods value</p></td>
+      <td class="fifth"><p>Number of Packages</p></td>
+      <td class="sixth"><p>Total weight</p></td>
+    </tr>
+    <tr style="border: 1px solid black;">
+      <td class="first"><p>{{ summary.incoterm }}</p></td>
+        <td class="sec"><p>{{ summary.currency }}</p></td>
+        <td class="fourth"><p>{{ summary.total_invoice_value }}</p></td>
+        <td class="fifth"><p>{{ summary.total_packages }}</p></td>
+        <td class="sixth"><p>{{ summary.total_weight }} kg</p></td>
+    </tr>
+  </table>
+    <table cellpadding="0" cellspacing="0" style="margin-top: 20px;">
+      {% comment %}
+      <tr class="head-row-simple">
+        <td colspan="7"><p></p></td>
+      </tr>
+      {% endcomment %}  
+      <tr class="head-row" style="border: 1px solid black;">
+        <td width="25%"><p>Commodity Code</p></td>
+        <td class="sec"><p>Full description of goods</p></td>
+        <td width="20%"><p>QTY</p></td>
+        <td width="40%"><p>Country of origin</p></td>
+        <td width="40%">Total weight</td>
+        <td width="40%"><p>Unit Value</p></td>
+        <td width="40%"><p>Total Value</p></td>
+      </tr>
+      {% for item in commodities %}
+      <tr style="border: 1px solid black;">
+      <td width="25%"><p>{{ item.commodity_code }}</p></td>
+        <td class="sec"><p>{{ item.description }}</p></td>
+        <td width="20%"><p>{{ item.quantity }}</p></td>
+        <td width="40%"><p>{{ item.country_of_manufacture }}</p></td>
+        <td width="s%">{{ summary.total_weight }} kg</td>
+        <td width="40%"><p>{{ item.unit_value_single }}</p></td>
+        <td width="40%"><p>{{ item.unit_value_total }}</p></td>
+      </tr>
+      {% empty %}
+      <tr style="border: 1px solid black;">
+        <td colspan="7"><p>No data.</p></td>
+      </tr>
+      {% endfor %}
+  </table>
+    &nbsp;
+   
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+  <p>&nbsp; </p>
+    <table>
+      <tr>
+        <td><p><b>Shipper's Signature:</b></p></td>
+        <td><p>&nbsp;</p></td>
+        <td><p><b>Date:</b></p></td>
+        <td><p>{{ header.invoice_date }}</p></td>
+      </tr>
+    </table>
+    <hr />
+  </body>
+</html>
