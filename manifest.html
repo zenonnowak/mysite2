@@ -1,0 +1,244 @@
+<document pagesize='letter'>
+<html>
+  <head>
+    <title>Table</title>
+
+    <style type="text/css">
+      @page {
+        size: letter landscape;
+        margin: 1cm;
+        margin-bottom: 1cm;
+        margin-top: 1cm;
+      
+      @frame footer2_frame {
+	-pdf-frame-content: footer2_content;
+	width: 80%; top: 775px; height: 20pt;
+	text-align:center;
+      }
+      @frame header_frame {
+	-pdf-frame-content: header_content;
+	width: 80%; top: 20px; height: 30pt;
+	text-align:center;
+	}
+      }
+        
+      html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+      /* HTML5 display-role reset for older browsers */
+      article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+        display: block;
+      }
+      body {
+        line-height: 1;
+      }
+      ol, ul {
+        list-style: none;
+      }
+      blockquote, q {
+        quotes: none;
+      }
+      blockquote:before, blockquote:after, q:before, q:after {
+        content: '';
+        content: none;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      #main_table {
+        width: 940px;
+        margin: 0 auto;
+      }
+      tr.head-row {
+        background-color: #b3b3b3;
+        font-weight:bold;
+        border: 1px solid black;
+      }
+
+      tr.head-row2 {
+        background-color: #ffffff;
+      }
+
+      tr.odd-row {
+        background-color: #ffffff;
+      }
+
+      tr.even-row {
+        background-color: #ffffff;
+      }
+
+      #main_table tr.odd-row p, #main_table tr.even-row p {
+        font-size: 28px;
+        color: #000;
+      }
+
+      #main_table tr td {
+        padding: 15px;
+        width: 297px;
+      }
+
+      #main_table tr.head-row p {
+        color: #000;
+        font-size: 28px;
+        margin: 0 0 0 10px;
+        line-height: 32px;
+      }
+
+      #main_table tr.head-row p b {
+        font-weight: bold;
+      }
+
+      #little_table {
+        width: 900px;
+        margin: 30px auto 0;
+      }
+
+      #little_table td {
+        padding: 15px;
+        border-right: 1px solid #ededed
+      }
+
+      #little_table p {
+        font-size: 16px;
+      }
+
+      .first, .fifth, .eighth {
+        width: 90px;
+      }
+
+      .sec, .seventh {
+        width: 40px;
+      }
+
+      .third, .fourth, .sixth {
+        width: 140px;
+      }
+
+      .main-head {
+        font-size: 34px;
+        color: #000;
+        font-weight: normal;
+        text-align: center;
+        margin: 30px 0;
+      }
+      
+      #main-div {
+        margin-top: 50px;
+      }
+      
+      td {
+        padding: 5px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="footer2_content" style="text-align:center;"> page <pdf:pagenumber> of <pdf:pagecount/>
+    </div>
+    <div id="header_content">
+      <h1 class="main-head">CONSIGNMENT MANIFEST</h1>
+    </div>
+    
+    <div id="main-div">
+      
+      <table cellpadding="0" cellspacing="0" id="main_table" style="width: 940px">
+        <tr class="head-row2">
+          <td style="border-right: 1px solid #ededed">
+            <p><b>Collection details</b></p>
+          </td>
+          <td style="border-right: 1px solid #ededed">
+            <p><b>Account Details</b></p>
+            
+          </td>
+
+          <td style="border-right: 1px solid #ededed;">
+          <p style="text-align:center;"><b>Carrier Details</b></p>
+          <td><p><b>Date created: </b>{{ header.date_created }}</p></td>
+        </tr>
+        <tr>
+        <td style="border-right: 1px solid #ededed">
+         <p>
+              {% for address_line in header.collection_details %}
+              {{ address_line }}<br/>
+              {% empty %}
+              No data!
+              {% endfor %}
+            </p>
+          </td>
+      <td style="border-right: 1px solid #ededed"; valign="top";>
+          <p>
+              {% for detail in header.account_details %}
+              {{ detail }}<br/>
+              {% empty %}
+              No data!
+              {% endfor %}
+       </p>
+       <td width="150px" valign="top"; style="text-align:center; border-right: 1px solid #ededed;"><p> DHL</p></td>
+       <td valign="top";><p>Manifest ID : 23</p></td>
+</table>
+<p>&nbsp;</p>
+        <table cellpadding="3" cellspacing="0" id="main_table" style="width: 940px">
+        <tr class="head-row2">
+          <td style="border-right: 1px solid #ededed">
+            <p><b>Total number of consignments: </b>{{ header.number_total }}</p>
+          </td>
+          <td style="border-right: 1px solid #ededed">
+            <p><b>Total weight of consignments: </b>{{ header.weight_total }}kg</p>
+          </td>
+        </tr>
+        <tr class="even-row">
+          <td style="border-right: 1px solid #ededed"><p>&nbsp;</p></td>
+          <td style="border-right: 1px solid #ededed"></td>
+          <td></td>
+        </tr>
+        <tr class="even-row">
+          <td style="border-right: 1px solid #ededed"><p>Signature:</p></td>
+          <td style="border-right: 1px solid #ededed"><p>Date:</p></td>
+        </tr>
+        <tr class="even-row">
+          <td style="border-right: 1px solid #ededed"><p>Signature:</p></td>
+          <td style="border-right: 1px solid #ededed"><p>Date:</p></td>
+        </tr>
+      </table>
+      <table id="little_table" border=1 cellpadding="4">
+        <tr class="head-row" style="border: 1px solid black;">
+          <td class="first"><p>Consignment #</p></td>
+          <td class="sec"><p>Recipient</p></td>
+          <td class="third"><p>Address</p></td>
+          <td class="fourth"><p>Postcode</p></td>
+          <td class="fifth"><p>Country</p></td>
+          <td class="sixth" width="30px"><p>No. of Parcels</p></td>"
+          <td class="seventh" style="text-align:center;"><p>Weight</p></td>
+          <td class="eighth"><p>Service</p></td>
+        </tr>
+        {% for shipment in shipments %}
+        <tr class="odd-row" style="border: 1px solid black;">
+          <td class="first"><p>{{ shipment.consignment_num }}</p></td>
+          <td class="sec"><p>{{ shipment.contact_name }}</p></td>
+          <td class="third"><p>{{ shipment.address }}</p></td>
+          <td class="fourth"><p>{{ shipment.postcode }}</p></td>
+          <td class="fifth"><p>{{ shipment.country }}</p></td>
+          <td class="sixth" style=text-align:center; width="30px";><p>{{ shipment.numb_of_parcels }}</p></td> 
+          <td class="seventh" style="text-align:center;"><p>{{ shipment.weight }} kg</p></td>
+          <td class="eighth"><p>{{ shipment.service }}</p></td>
+        </tr>
+        {% empty %}
+        <tr class="odd-row">
+          <td class="first" colspan="8"><p>No shipments for this manifest.</p></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+  </body>
+</html>
